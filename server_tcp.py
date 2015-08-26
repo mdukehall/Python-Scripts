@@ -5,16 +5,22 @@ bind_ip = "0.0.0.0"
 bind_port = 9999
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+#begin listening
+#doc: https://docs.python.org/2/library/socket.html
 server.bind((bind_ip,bind_port))
+
+#set max backlog to 5
 server.listen(5)
 
 print "[*] listing on %s:%d" % (bind_ip, bind_port)
 
 #thread: manage client
+#perform a receive and respond.
 def handle_client(client_socket):
     request = client_socket.recv(1024)
     print "[*] received: %s" % request
-    client_socket.send("ACK!")
+    client_socket.send("message received captain")
     client_socket.close()
 
 while True:
@@ -23,4 +29,3 @@ while True:
 
     client_handler = threading.Thread(target=handle_client,args=(client,))
     client_handler.start()
-    

@@ -1,7 +1,7 @@
 import socket
 
-target_host="www.google.com"
-target_port=80
+target_host="www.google.com"    #string DNS or IP
+target_port=80                  #integer
 
 #create TCP socket
 #doc: https://docs.python.org/2/library/socket.html
